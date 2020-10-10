@@ -2,22 +2,20 @@
 % Please edit documentation in R/global_environment.R
 \name{slibrary}
 \alias{slibrary}
-\title{safe mode for library
-check if it is installed before library}
+\title{safe mode for library}
 \usage{
 slibrary(..., install = TRUE)
 }
 \arguments{
-\item{install}{automatically install the uninstalled packages}
+\item{...}{}
 
-\item{fun}{the name of the packages}
+\item{install}{automatically install the uninstalled packages}
 }
 \value{
 
 }
 \description{
 safe mode for library
-check if it is installed before library
 }
 \examples{
 slibrary(lattice)

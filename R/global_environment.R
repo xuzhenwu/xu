@@ -1,8 +1,8 @@
 #' safe mode for library
-#' check if it is installed before library
+#' @description library multiple packages, allow for automatic installation
 #'
-#' @param fun the name of the packages
 #' @param install automatically install the uninstalled packages
+#' @param ...
 #'
 #' @return
 #' @export
