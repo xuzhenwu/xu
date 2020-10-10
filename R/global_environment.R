@@ -1,16 +1,17 @@
 #' safe mode for library
-#' @description library multiple packages, allow for automatic installation
 #'
-#' @param install automatically install the uninstalled packages
-#' @param ...
+#' library multiple packages with automatic installation
+#'
+#' @param ...     names of packages, same as in library()
+#' @param install a bool value to indicate whether automatically install
+#'                the uninstalled packages, default as TRUE
 #'
 #' @return
 #' @export
 #'
 #' @examples
 #' slibrary(lattice)
-#' slibrary(lattice, install = FALSE)
-#'
+#' slibrary(lattice, sf, raster, install = FALSE)
 slibrary <- function(..., install = TRUE){
   funs <- as.character(substitute(list(...)))
   for(i in seq_along(funs)){
@@ -19,13 +20,13 @@ slibrary <- function(..., install = TRUE){
       if(is.element(fun_name, installed.packages()[,1]) == FALSE){
         if(install == TRUE){
           install.packages(fun_name)
-          COMMAND <- paste("library(", fun_name, ")", sep = "")
-          eval(parse(text = COMMAND))
         }
         else{
-          print(paste("package '", fun_name, "' is not installed", sep = ""))
+          warning(paste("package '", fun_name, "' is not installed", sep = ""))
         }
       }
+      COMMAND <- paste("library(", fun_name, ")", sep = "")
+      eval(parse(text = COMMAND))
     }
   }
 }

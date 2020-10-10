@@ -7,18 +7,18 @@
 slibrary(..., install = TRUE)
 }
 \arguments{
-\item{...}{}
+\item{...}{names of packages, same as in library()}
 
-\item{install}{automatically install the uninstalled packages}
+\item{install}{a bool value to indicate whether automatically install
+the uninstalled packages, default as TRUE}
 }
 \value{
 
 }
 \description{
-safe mode for library
+library multiple packages with automatic installation
 }
 \examples{
 slibrary(lattice)
-slibrary(lattice, install = FALSE)
-
+slibrary(lattice, sf, raster, install = FALSE)
 }
