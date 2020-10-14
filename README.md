@@ -1,4 +1,4 @@
-# rxu
+# xu
 
 This package contains some personal functions in R.
 
