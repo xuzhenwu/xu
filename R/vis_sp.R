@@ -33,7 +33,7 @@ vis_rasterbrick <- function(rb = NULL, bands = NULL, cols  = NULL, ncol = 2,
     stop(paste("seqs settings exceeds the number of bands in the rasterbrick:", length(names(rb))))
 
   levelplot2 <- function(i, rb, cols){
-    r <- raseter::raster(rb, layer = i)
+    r <- raster::raster(rb, layer = i)
     p <- rasterVis::levelplot(r,
                    margin = FALSE,
                    xlab = "",
