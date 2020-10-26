@@ -1,11 +1,22 @@
 Package: xu
 Type: Package
 Title: personal functions for xuzhenwu
-Version: 0.1.0
+Version: 0.0.1
 Author: xuzhenwu
 Maintainer: The package maintainer <xuzhenwu.c@gmail.com>
 Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
+Depends:
+    R (>= 4.0)
+Imports:
+	data.table,
+	dplyr,
+    raster,
+    sp,
+    rasterVis,
+    exactextractr,
+    ggplot2,
+    gridExtra
 License:  MIT
 Encoding: UTF-8
 LazyData: true
