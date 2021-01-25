@@ -8,15 +8,17 @@ Description: More about what it does (maybe more than one line)
     Use four spaces when indenting paragraphs within the Description.
 Depends:
     R (>= 4.0)
-Imports:
-	data.table,
+    data.table,
 	dplyr,
     raster,
     sp,
+    lubridate,
+    magrittr,
     rasterVis,
     exactextractr,
     ggplot2,
     gridExtra
+Imports:
 License:  MIT
 Encoding: UTF-8
 LazyData: true
