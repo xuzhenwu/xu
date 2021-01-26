@@ -1,3 +1,6 @@
+
+
+
 #' filter by date range
 #'
 #' @param dt data.table or vector
@@ -6,7 +9,7 @@
 #'
 #' @return
 #' @export
-#'
+#' @import magrittr
 #' @examples
 filter_date <- function(dt, date_range, DateName = 'Date'){
   if(is.data.table(dt)) dt %<>% setDT()
