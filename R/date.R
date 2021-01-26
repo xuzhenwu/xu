@@ -9,15 +9,15 @@
 #'
 #' @return
 #' @export
-#' @import magrittr
 #' @examples
 filter_date <- function(dt, date_range, DateName = 'Date'){
-  if(is.data.table(dt)) dt %<>% setDT()
+
   if(is.list(dt)){
-    dt[[Date]] %<>% as_date
+    if(is.data.table(dt)) dt %<>% setDT()
+    dt[[DateName]] %<>% as_date
     date_range %<>% as_date
     # setnames(dt, Date, 'Date')
-    return(dt[dt[[Date]] >= date_range[1] & dt[[Date]] <= date_range[2]])
+    return(dt[dt[[DateName]] >= date_range[1] & dt[[DateName]] <= date_range[2]])
   }
   else{
     tmp <- function(x, date_range){

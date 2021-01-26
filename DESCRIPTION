@@ -9,15 +9,10 @@ Description: More about what it does (maybe more than one line)
 Depends:
     R (>= 4.0)
 Imports:data.table,
-	tidyverse,
-    raster,
-    sf,
-    lubridate,
-    magrittr,
-    rasterVis,
-    exactextractr,
-    ggplot2,
-    gridExtra
+    dplyr, stringr, purrr, magrittr,ggplot2, gridExtra,
+    lubridate, zoo,
+    raster, rasterVis, sf, exactextractr,
+    Rcpp
 License: MIT
 Encoding: UTF-8
 LazyData: true

@@ -2,7 +2,7 @@
 % Please edit documentation in R/import.R
 \name{import_packages_xu}
 \alias{import_packages_xu}
-\title{Title}
+\title{import the required packages for global settings}
 \usage{
 import_packages_xu()
 }
@@ -10,5 +10,5 @@ import_packages_xu()
 
 }
 \description{
-Title
+import the required packages for global settings
 }
