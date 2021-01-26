@@ -160,9 +160,9 @@ KGE <- function(Qsim, Qobs){
 }
 
 
-#' Model performance
+#' Model simulation performance
 #'
-#' Calculate Statistics include: NSE, logNSE, RMSE, R, R2, Bias, ABias
+#' Calculate Statistics include: NSE, logNSE, KGE, RMSE, R, R2, Bias, ABias
 #'
 #' @param Qsim
 #' @param Qobs
@@ -171,7 +171,7 @@ KGE <- function(Qsim, Qobs){
 #' @export
 #'
 #' @examples
-model_peformance <- function(Qsim, Qobs){
+simulation_performance <- function(Qsim, Qobs){
 
   # exclude NA
   data <- data.table(Qsim, Qobs)
@@ -182,11 +182,11 @@ model_peformance <- function(Qsim, Qobs){
   data.table(NSE = NSE(Qsim, Qobs),
              RMSE = RMSE(Qsim, Qobs),
              logNSE = logNSE(Qsim, Qobs),
+             KGE = KGE(Qsim, Qobs),
              R = cor(Qsim, Qobs),
              R2 = cor(Qsim, Qobs)^2,
              Bias = Bias(Qsim, Qobs),
-             ABias = ABias(Qsim, Qobs),
-             KGE = KGE(Qsim, Qobs)
+             ABias = ABias(Qsim, Qobs)
   )
 }
 
