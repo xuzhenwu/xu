@@ -15,7 +15,7 @@
 NSE <- function(Qsim, Qobs){
 
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
   Qsim <- data$Qsim
   Qobs <- data$Qobs
@@ -46,8 +46,9 @@ NSE <- function(Qsim, Qobs){
 logNSE <- function(Qsim, Qobs){
 
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
+  data <- data[Qsim > 0 & Qobs > 0] # exclude 0, as it produce -inf
   Qsim <- log(data$Qsim) #log transform
   Qobs <- log(data$Qobs)
 
@@ -64,12 +65,21 @@ logNSE <- function(Qsim, Qobs){
 }
 
 
+#' Title
+#'
+#' @param Qsim
+#' @param Qobs
+#'
+#' @return
+#' @export
+#'
+#' @examples
 RMSE <- function(Qsim, Qobs){
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
-  Qsim <- log(data$Qsim) #log transform
-  Qobs <- log(data$Qobs)
+  Qsim <- data$Qsim
+  Qobs <- data$Qobs
 
   sqrt(mean((Qsim - Qobs)^2))
 }
@@ -88,7 +98,7 @@ RMSE <- function(Qsim, Qobs){
 Bias <- function(Qsim, Qobs){
 
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
   Qsim <- data$Qsim
   Qobs <- data$Qobs
@@ -118,7 +128,7 @@ Bias <- function(Qsim, Qobs){
 ABias <- function(Qsim, Qobs){
 
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
   Qsim <- data$Qsim
   Qobs <- data$Qobs
@@ -135,6 +145,19 @@ ABias <- function(Qsim, Qobs){
 }
 
 
+#' Title
+#'
+#' @param Qsim
+#' @param Qobs
+#'
+#' @return
+#' @export
+#'
+#' @examples
+KGE <- function(Qsim, Qobs){
+  R <- cor(Qsim, Qobs)
+  KGE <- 1 - sqrt((R - 1)^2 + (mean(Qsim)/mean(Qobs) - 1)^2 + (sd(Qsim)/sd(Qobs) - 1)^2)
+}
 
 
 #' Model performance
@@ -151,11 +174,10 @@ ABias <- function(Qsim, Qobs){
 model_peformance <- function(Qsim, Qobs){
 
   # exclude NA
-  data <- data.frame(Qsim = Qsim, Qobs = Qobs)
+  data <- data.table(Qsim, Qobs)
   data <- na.omit(data)
   Qsim <- data$Qsim
   Qobs <- data$Qobs
-
 
   data.table(NSE = NSE(Qsim, Qobs),
              RMSE = RMSE(Qsim, Qobs),
@@ -163,7 +185,8 @@ model_peformance <- function(Qsim, Qobs){
              R = cor(Qsim, Qobs),
              R2 = cor(Qsim, Qobs)^2,
              Bias = Bias(Qsim, Qobs),
-             ABias = ABias(Qsim, Qobs)
+             ABias = ABias(Qsim, Qobs),
+             KGE = KGE(Qsim, Qobs)
   )
 }
 
